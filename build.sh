@@ -4,5 +4,5 @@ make $1
 echo "Press ENTER to Continue"
 read
 clear
-valgrind ./$1
+valgrind ./$*
 rm -f $1
