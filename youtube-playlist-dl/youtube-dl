@@ -1,0 +1,3 @@
+youtube-dl --restrict-filenames -g --get-filename --ignore-config -o "&title=%(playlist_index)s-%(title)s>%(playlist_index)s-%(title)s</a></br>" https://www.youtube.com/playlist?list=PLckFgM6dUP2hc4iy-IdKFtqR9TeZWMPjm
+youtube-dl --restrict-filenames -g --get-filename --ignore-config -o "&title=%(playlist_index)s-%(title)s>%(playlist_index)s-%(title)s</a></br>" https://www.youtube.com/playlist?list=PLckFgM6dUP2hc4iy-IdKFtqR9TeZWMPjm
+youtube-dl --get-filename -g --ignore-config -o "%(playlist_index)s-%(title)s" https://www.youtube.com/playlist?list=PLckFgM6dUP2hc4iy-IdKFtqR9TeZWMPjm
