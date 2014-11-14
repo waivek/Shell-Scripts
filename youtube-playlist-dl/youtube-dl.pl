@@ -1,18 +1,15 @@
-my ($html) = @ARGV;
-if($html eq '') {
-    $html = 'links.html';
-}
-my $command = q[youtube-dl -f 135 --get-filename -g --ignore-config -o "%(playlist_index)s-%(title)s" https://www.youtube.com/playlist?list=PLckFgM6dUP2hc4iy-IdKFtqR9TeZWMPjm|];
+use strict;
+use warnings;
+my ($url) = @ARGV;
+print "URL is $url\n";
+# https://www.youtube.com/playlist?list=PLckFgM6dUP2hc4iy-IdKFtqR9TeZWMPjm
+my $html = `youtube-dl --playlist-end 1 --get-filename --ignore-config -o "%(playlist)s" $url`;
+chomp $html;
+$html = $html . '.html';
+print "$html: Started\n";
+my $command = "youtube-dl -f 135 --get-filename -g --ignore-config -o \"%(playlist_index)s-%(title)s\" $url|";
 open(PIPE, $command);
-# my $it = natatime 2, <PIPE>;
-# print "vivek\n";
-# while(my ($x, $y) = $it->()) {
-#     chomp $x;
-#     chomp $y;
-#     print "\t<a href=$x>$y</a></br>\n";
-# }
 my $i = 0;
-print "Started!\n";
 open my $fh, '>', $html;
 print {$fh} "<html>\n";
 while(<PIPE>) {
