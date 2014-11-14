@@ -1,4 +1,7 @@
-print @ARGV;
+my ($html) = @ARGV;
+if($html eq '') {
+    $html = 'links.html';
+}
 my $command = q[youtube-dl -f 135 --get-filename -g --ignore-config -o "%(playlist_index)s-%(title)s" https://www.youtube.com/playlist?list=PLckFgM6dUP2hc4iy-IdKFtqR9TeZWMPjm|];
 open(PIPE, $command);
 # my $it = natatime 2, <PIPE>;
@@ -10,7 +13,7 @@ open(PIPE, $command);
 # }
 my $i = 0;
 print "Started!\n";
-open my $fh, '>', "links.html";
+open my $fh, '>', $html;
 print {$fh} "<html>\n";
 while(<PIPE>) {
     chomp;
